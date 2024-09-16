@@ -1,12 +1,33 @@
-// Este archivo es para crear la libreria <string.h> por completo xd.
-// Motivo: Aprender a utilizar los punteros y arrays en C.
-// Por que C. Porque si aprendo c entonces sabre un poco mas de bajo nivel que con C++.
-// Ademas prodia programar en C++ sin problemas. Solo tendria que aprender cosas esenciales de C++.
-// Pero ya sabre programar y solo tengo que conocer syntaxis de C++ para agilizar mi codigo.
-// Y asi con todos los lenguajes pero C++ sera lo mas sencillo porque las bases son las mismas.
+#include <stdio.h>
+#include <stdlib.h>
+
+int my_strlen(char str[]) {
+    int len = 0;
+
+    while (str[len] != '\0')
+        len++;
+    
+    return len;
+}
+
+char* my_strcat(char str1[], char str2[]) {
+    int total_size = my_strlen(str1) + my_strlen(str2) + 1;
+    char* fstr = (char*)malloc(total_size*sizeof(char));
+
+    for (int i = 0; i < my_strlen(str1); i++) 
+        *(fstr + i) = str1[i];
+    
+    for (int i = 0; i < my_strlen(str2); i++) 
+        *(fstr + i + my_strlen(str1)) = str2[i];
+    
+    *(fstr + total_size - 1) = '\0';
+
+    return fstr;
+}
 
 int main() {
-  printf("Buenos dias hermano");
-
-  return 0;
+    char* new_string = my_strcat("Cesar", "Luis");
+    printf("%s", new_string);
+    free(new_string);
+    return 0;
 }

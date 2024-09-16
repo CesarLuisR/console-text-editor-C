@@ -27,6 +27,7 @@ void fibo() {
 }
 
 int main() {
+    fibonacci(0, 1, 0);
     fibo();
     
     return 0;
